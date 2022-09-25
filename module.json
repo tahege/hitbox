@@ -4,8 +4,8 @@
   "description": "Content that Thomas aggregates",
   "version": "0.0.2",
   "author": "Thomas",
-  "manifest": "http://kpogl.wdfiles.com/local--files/home:home/module.json",
-  "download": "http://kpogl.wdfiles.com/local--files/home:home/koboldpressogl.zip",
+  "manifest": "https://raw.githubusercontent.com/tahege/hitbox/main/module.json",
+  "download": "https://github.com/tahege/hitbox/raw/main/thomaspecial.zip",
   "systems": ["dnd5e"],
   "styles": [],
   "packs": [

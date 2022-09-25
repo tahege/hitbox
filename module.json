@@ -1,0 +1,36 @@
+{
+  "name": "thomasspecial",
+  "title": "Thomas' Special Compendium",
+  "description": "Content that Thomas aggregates",
+  "version": "0.0.2",
+  "author": "Thomas",
+  "manifest": "http://kpogl.wdfiles.com/local--files/home:home/module.json",
+  "download": "http://kpogl.wdfiles.com/local--files/home:home/koboldpressogl.zip",
+  "systems": ["dnd5e"],
+  "styles": [],
+  "packs": [
+    {
+      "name": "koboldpressmonstertables",
+      "label": "Kobold Press Monster Tables",
+      "system": "dnd5e",
+      "path": "packs/KPtables.db",
+      "entity": "RollTable"
+    },
+    {
+      "name": "srdtables",
+      "label": "SRD Monster Tables",
+      "system": "dnd5e",
+      "path": "packs/SRDtables.db",
+      "entity": "RollTable"
+    },
+    {
+      "name": "combinedtables",
+      "label": "Combined Monster Tables",
+      "system": "dnd5e",
+      "path": "packs/Combinedtables.db",
+      "entity": "RollTable"
+    }
+  ],
+  "minimumCoreVersion": "0.7.0",
+  "compatibleCoreVersion": "0.8.8"
+}

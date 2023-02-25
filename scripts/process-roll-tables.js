@@ -113,13 +113,13 @@ module.exports = function processRollTables(kpMonsters, wotcMonsters) {
                     "flags": {}
                 };
                 if (creature.source === SRD) {
-                    base.documentCollection = "dnd5e.monsters";
+                    base.documentCollection = "shady-grey-zone.sgzwotcmonsters";
                     base.range = [srdTable.results.length + 1, srdTable.results.length + 1];
                     base._id = `SRCR${normCRLonger}${creature._id.substr(0, 7)}`;
                     srdTable.results.push(base);
                 }
                 if (creature.source === KP) {
-                    base.documentCollection = "koboldpressogl.koboldpressmonsters";
+                    base.documentCollection = "shady-grey-zone.sgzkoboldmonsters";
                     base.range = [kpTable.results.length + 1, kpTable.results.length + 1];
                     base._id = `KPCR${normCRLonger}${creature._id.substr(0, 7)}`;
                     kpTable.results.push(base);

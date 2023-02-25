@@ -20,7 +20,8 @@ const Constants = {
 
 const _nameMap = new WeakMap();
 function readDbAsMap(fileName) {
-    const filePath = path.resolve(__dirname, '../src/pack-data', fileName.endsWith('.db') ? fileName : fileName + '.db');
+    const packDataDir = path.resolve("F:/Dungeons & Dragons/Data Aggregation/Foundry");
+    const filePath = path.resolve(packDataDir, fileName.endsWith('.db') ? fileName : fileName + '.db');
     const fileContent = fs.readFileSync(filePath).toString();
     const fileEntries = fileContent.trim().split("\n").map(JSON.parse);
     const result = fileEntries.reduce((prev, curr, idx) => {

@@ -1,0 +1,227 @@
+{
+  "name": "shady-grey-zone",
+  "title": "Shady Grey Zone Compendium",
+  "description": "Aggregate of resources brought together through shady legality.",
+  "version": "0.1.0",
+  "authors": [
+    {
+      "name": "Thomas"
+    }
+  ],
+  "manifest": "https://raw.githubusercontent.com/tahege/hitbox/main/module.json",
+  "download": "https://github.com/tahege/hitbox/raw/main/shadygreyzone.zip",
+  "relationships": {
+    "systems": [
+      {
+        "id": "dnd5e",
+        "type": "system",
+        "compatibility": {
+          "minimum": "2.0.2"
+        }
+      }
+    ]
+  },
+  "styles": [],
+  "packs": [
+    {
+      "name": "sgzkoboldmonsters",
+      "label": "OGL Kobold Press Monsters",
+      "system": "dnd5e",
+      "path": "packs/kp-monsters.db",
+      "type": "Actor"
+    },
+    {
+      "name": "sgzwotcmonsters",
+      "label": "Extended Monsters",
+      "system": "dnd5e",
+      "path": "packs/wotc-monsters.db",
+      "type": "Actor"
+    },
+    {
+      "name": "sgzwotcfeats",
+      "label": "Extended Feats",
+      "system": "dnd5e",
+      "path": "packs/wotc-feats.db",
+      "type": "Item"
+    },
+    {
+      "name": "sgzkoboldspells",
+      "label": "OGL Kobold Press Spells",
+      "system": "dnd5e",
+      "path": "packs/kp-spells.db",
+      "type": "Item"
+    },
+    {
+      "name": "sgzwotcspells",
+      "label": "Extended Spells",
+      "system": "dnd5e",
+      "path": "packs/wotc-spells.db",
+      "type": "Item"
+    },
+    {
+      "name": "sgzwotcraces",
+      "label": "Extended Racial Feats",
+      "system": "dnd5e",
+      "path": "packs/wotc-races.db",
+      "type": "Item"
+    },
+    {
+      "name": "sgzwotcclasses",
+      "label": "Extended Classes",
+      "system": "dnd5e",
+      "path": "packs/wotc-classes.db",
+      "type": "Item"
+    },
+    {
+      "name": "sgzwotcclassfeats",
+      "label": "Extended Class Feats",
+      "system": "dnd5e",
+      "path": "packs/wotc-classfeatures.db",
+      "type": "Item"
+    },
+    {
+      "name": "sgzwotcitems",
+      "label": "Extended Items",
+      "system": "dnd5e",
+      "path": "packs/wotc-items.db",
+      "type": "Item"
+    },
+    {
+      "name": "sgzwotcsubclasses",
+      "label": "Extended Subclasses",
+      "system": "dnd5e",
+      "path": "packs/wotc-subclasses.db",
+      "type": "Item"
+    },
+    {
+      "name": "sgzdscrybactions",
+      "label": "Dscryb Actions",
+      "system": "dnd5e",
+      "path": "packs/dscryb-actions.db",
+      "type": "JournalEntry"
+    },
+    {
+      "name": "sgzdscrybafflictions",
+      "label": "Dscryb Afflictions",
+      "system": "dnd5e",
+      "path": "packs/dscryb-afflictions.db",
+      "type": "JournalEntry"
+    },
+    {
+      "name": "sgzdscrybcartographer",
+      "label": "Dscryb Cartographer",
+      "system": "dnd5e",
+      "path": "packs/dscryb-cartographer.db",
+      "type": "JournalEntry"
+    },
+    {
+      "name": "sgzdscrybcharacters",
+      "label": "Dscryb Characters",
+      "system": "dnd5e",
+      "path": "packs/dscryb-characters.db",
+      "type": "JournalEntry"
+    },
+    {
+      "name": "sgzdscrybdialogue",
+      "label": "Dscryb Dialogue",
+      "system": "dnd5e",
+      "path": "packs/dscryb-dialogue.db",
+      "type": "JournalEntry"
+    },
+    {
+      "name": "sgzdscrybenchanteracademy",
+      "label": "Dscryb Enchanter Academy",
+      "system": "dnd5e",
+      "path": "packs/dscryb-enchanter-academy.db",
+      "type": "JournalEntry"
+    },
+    {
+      "name": "sgzdscrybevents",
+      "label": "Dscryb Events",
+      "system": "dnd5e",
+      "path": "packs/dscryb-events.db",
+      "type": "JournalEntry"
+    },
+    {
+      "name": "sgzdscrybitems",
+      "label": "Dscryb Items",
+      "system": "dnd5e",
+      "path": "packs/dscryb-items.db",
+      "type": "JournalEntry"
+    },
+    {
+      "name": "sgzdscrybmonsters",
+      "label": "Dscryb Monsters",
+      "system": "dnd5e",
+      "path": "packs/dscryb-monsters.db",
+      "type": "JournalEntry"
+    },
+    {
+      "name": "sgzdscrybnature",
+      "label": "Dscryb Nature",
+      "system": "dnd5e",
+      "path": "packs/dscryb-nature.db",
+      "type": "JournalEntry"
+    },
+    {
+      "name": "sgzdscrybplaces",
+      "label": "Dscryb Places",
+      "system": "dnd5e",
+      "path": "packs/dscryb-places.db",
+      "type": "JournalEntry"
+    },
+    {
+      "name": "sgzdscrybplanes",
+      "label": "Dscryb Planes",
+      "system": "dnd5e",
+      "path": "packs/dscryb-planes.db",
+      "type": "JournalEntry"
+    },
+    {
+      "name": "sgzdscrybspells",
+      "label": "Dscryb Spells",
+      "system": "dnd5e",
+      "path": "packs/dscryb-spells.db",
+      "type": "JournalEntry"
+    },
+    {
+      "name": "sgzdscrybtraps",
+      "label": "Dscryb Traps",
+      "system": "dnd5e",
+      "path": "packs/dscryb-traps.db",
+      "type": "JournalEntry"
+    },
+    {
+      "name": "sgzdscrybvehicles",
+      "label": "Dscryb Vehicles",
+      "system": "dnd5e",
+      "path": "packs/dscryb-vehicles.db",
+      "type": "JournalEntry"
+    },
+    {
+      "name": "sgzkoboldmonstertables",
+      "label": "Kobold Press Monster Tables",
+      "system": "dnd5e",
+      "path": "packs/kp-monster-tables.db",
+      "type": "RollTable"
+    },
+    {
+      "name": "sgzwotcmonsterstables",
+      "label": "Monster Tables",
+      "system": "dnd5e",
+      "path": "packs/wotc-monster-tables.db",
+      "type": "RollTable"
+    },
+    {
+      "name": "sgzcombinedmonstertables",
+      "label": "Combined Monster Tables",
+      "system": "dnd5e",
+      "path": "packs/combined-monster-tables.db",
+      "type": "RollTable"
+    }
+  ],
+  "compatibility": {
+    "minimum": "0.7.0",
+    "verified": "0.8.8"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "shady-grey-zone",
+  "version": "0.1.0",
+  "scripts": {
+    "process-output": "node scripts/process-module-content.js",
+    "pack-it": "node scripts/packit.js",
+    "build": "npm run process-output && npm run pack-it"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "archiver": "^5.3.1",
+    "imagemin": "^8.0.1",
+    "imagemin-webp": "^7.0.0"
+  }
+}

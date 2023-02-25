@@ -1,6 +1,6 @@
 {
   "name": "shady-grey-zone",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "scripts": {
     "process-output": "node scripts/process-module-content.js",
     "pack-it": "node scripts/packit.js",

@@ -1,7 +1,7 @@
-const { readDbAsMap, writeMapAsDb, Constants, getUltimateAssetsMap, assetExists, copyModuleFile } = require("./process-utils");
+const { readDbAsMap, writeMapAsDb, getUltimateAssetsMap, copyModuleFile, Constants } = require("./process-utils");
 const processRollTables = require("./process-roll-tables");
+const processMonsters = require("./process-monsters");
 
-const DSCRYB_FLAG = "<!---dscryb--->";
 
 // Loading Zone
 const wotcFeats = readDbAsMap("wotc-feats");
@@ -75,8 +75,8 @@ async function run() {
         skipItems = new Set();
     const getItemDescriptor = name => possibleItemDescriptors[name]?.pages.find(({ name, type }) => name === "Text" || type === "text")?.text.content;
     function dscrybItemPrimary(item) {
-        if (item.data && item.data.description.value.includes(DSCRYB_FLAG)) return skipItems.add(item);
-        if (item.system && item.system.description.value.includes(DSCRYB_FLAG)) return skipItems.add(item);
+        if (item.data && item.data.description.value.includes(Constants.DSCRYB_FLAG)) return skipItems.add(item);
+        if (item.system && item.system.description.value.includes(Constants.DSCRYB_FLAG)) return skipItems.add(item);
         let normName = item.name.toLowerCase();
         if (normName.startsWith("adamantine")) {
             normName = "adamantine armor";
@@ -87,8 +87,8 @@ async function run() {
         if (item.data) item.data.description.value = item.data.description.value.replace("<em>Token artwork by Forgotten Adventures.</em>", "").replace("Content licensed under the @Compendium[koboldpressogl.koboldpressmonsters.KPOGL]{Open Game License}", "").trim();
         if (item.system) item.system.description.value = item.system.description.value.replace("<em>Token artwork by Forgotten Adventures.</em>", "").replace("Content licensed under the @Compendium[koboldpressogl.koboldpressmonsters.KPOGL]{Open Game License}", "").trim();
         if (primary) {
-            if (item.data) item.data.description.value += `${DSCRYB_FLAG}<blockquote>${primary}</blockquote>`;
-            if (item.system) item.system.description.value += `${DSCRYB_FLAG}<blockquote>${primary}</blockquote>`;
+            if (item.data) item.data.description.value += `${Constants.DSCRYB_FLAG}<blockquote>${primary}</blockquote>`;
+            if (item.system) item.system.description.value += `${Constants.DSCRYB_FLAG}<blockquote>${primary}</blockquote>`;
             usedItemDescriptors.add(normName);
         }
     }
@@ -96,8 +96,8 @@ async function run() {
         const secretCount = (itemSecrets.get(item) || 0) + 1;
         itemSecrets.set(item, secretCount);
         const secretId = item._id.substr(0, 14) + String(secretCount).padStart(2, "0");
-        if (item.data) item.data.description.value += `${DSCRYB_FLAG}<section id="secret-${secretId}" class="secret revealed"><strong>${title}</strong><em>${copy}</em></section>`;
-        if (item.system) item.system.description.value += `${DSCRYB_FLAG}<section id="secret-${secretId}" class="secret revealed"><strong>${title}</strong><em>${copy}</em></section>`;
+        if (item.data) item.data.description.value += `${Constants.DSCRYB_FLAG}<section id="secret-${secretId}" class="secret revealed"><strong>${title}</strong><em>${copy}</em></section>`;
+        if (item.system) item.system.description.value += `${Constants.DSCRYB_FLAG}<section id="secret-${secretId}" class="secret revealed"><strong>${title}</strong><em>${copy}</em></section>`;
     };
     function dscrybItemSecondary(item) {
         if (skipItems.has(item)) return;
@@ -132,15 +132,15 @@ async function run() {
         skipSpells = new Set();
     const getSpellDescriptor = name => possibleSpellDescriptors[name]?.pages.find(({ name, type }) => name === "Text" || type === "text")?.text.content;
     function dscrybSpellPrimary(spell) {
-        if (spell.data && spell.data.description.value.includes(DSCRYB_FLAG)) return skipSpells.add(spell);
-        if (spell.system && spell.system.description.value.includes(DSCRYB_FLAG)) return skipSpells.add(spell);
+        if (spell.data && spell.data.description.value.includes(Constants.DSCRYB_FLAG)) return skipSpells.add(spell);
+        if (spell.system && spell.system.description.value.includes(Constants.DSCRYB_FLAG)) return skipSpells.add(spell);
         const normName = spell.name.toLowerCase();
         const primary = getSpellDescriptor(normName);
         if (spell.data) spell.data.description.value = spell.data.description.value.replace("<em>Token artwork by Forgotten Adventures.</em>", "").replace("Content licensed under the @Compendium[koboldpressogl.koboldpressmonsters.KPOGL]{Open Game License}", "").trim();
         if (spell.system) spell.system.description.value = spell.system.description.value.replace("<em>Token artwork by Forgotten Adventures.</em>", "").replace("Content licensed under the @Compendium[koboldpressogl.koboldpressmonsters.KPOGL]{Open Game License}", "").trim();
         if (primary) {
-            if (spell.data) spell.data.description.value += `${DSCRYB_FLAG}<blockquote>${primary}</blockquote>`;
-            if (spell.system) spell.system.description.value += `${DSCRYB_FLAG}<blockquote>${primary}</blockquote>`;
+            if (spell.data) spell.data.description.value += `${Constants.DSCRYB_FLAG}<blockquote>${primary}</blockquote>`;
+            if (spell.system) spell.system.description.value += `${Constants.DSCRYB_FLAG}<blockquote>${primary}</blockquote>`;
             usedSpellDescriptors.add(normName);
         }
     }
@@ -148,8 +148,8 @@ async function run() {
         const secretCount = (spellSecrets.get(spell) || 0) + 1;
         spellSecrets.set(spell, secretCount);
         const secretId = spell._id.substr(0, 14) + String(secretCount).padStart(2, "0");
-        if (spell.data) spell.data.description.value += `${DSCRYB_FLAG}<section id="secret-${secretId}" class="secret revealed"><strong>${title}</strong><em>${copy}</em></section>`;
-        if (spell.system) spell.system.description.value += `${DSCRYB_FLAG}<section id="secret-${secretId}" class="secret revealed"><strong>${title}</strong><em>${copy}</em></section>`;
+        if (spell.data) spell.data.description.value += `${Constants.DSCRYB_FLAG}<section id="secret-${secretId}" class="secret revealed"><strong>${title}</strong><em>${copy}</em></section>`;
+        if (spell.system) spell.system.description.value += `${Constants.DSCRYB_FLAG}<section id="secret-${secretId}" class="secret revealed"><strong>${title}</strong><em>${copy}</em></section>`;
     };
     function dscrybSpellSecondary(spell) {
         if (skipSpells.has(spell)) return;
@@ -187,168 +187,18 @@ async function run() {
     writeMapAsDb(wotcSpells);
 
     // Monsters
-    console.log("Processing monsters...");
-    let usedMonsterDescriptors = new Set(),
-        monsterSecrets = new WeakMap(),
-        possibleMonsterDescriptors = { ...dMonsters, ...dActions, ...dCharacters, ...dNature, ...dItems },
-        skipMonsters = new Set();
-    const getMonsterDescriptor = name => possibleMonsterDescriptors[name]?.pages.find(({ name, type }) => name === "Text" || type === "text")?.text.content;
-    function dscrybMonsterPrimary(mob) {
-        if (mob.data && mob.data.details.biography.value.includes(DSCRYB_FLAG)) return skipMonsters.add(mob);
-        if (mob.system && mob.system.details.biography.value.includes(DSCRYB_FLAG)) return skipMonsters.add(mob);
-        const normName = mob.name.toLowerCase();
-        const primary = getMonsterDescriptor(normName);
-        if (mob.data) mob.data.details.biography.value = mob.data.details.biography.value.replace("<em>Token artwork by Forgotten Adventures.</em>", "").replace("Content licensed under the @Compendium[koboldpressogl.koboldpressmonsters.KPOGL]{Open Game License}", "").trim();
-        if (mob.system) mob.system.details.biography.value = mob.system.details.biography.value.replace("<em>Token artwork by Forgotten Adventures.</em>", "").replace("Content licensed under the @Compendium[koboldpressogl.koboldpressmonsters.KPOGL]{Open Game License}", "").trim();
-        if (primary) {
-            if (mob.data) mob.data.details.biography.value += `${DSCRYB_FLAG}<blockquote>${primary}</blockquote>`;
-            if (mob.system) mob.system.details.biography.value += `${DSCRYB_FLAG}<blockquote>${primary}</blockquote>`;
-            usedMonsterDescriptors.add(normName);
+    const [processedKpMonsters, processedWotcMonsters] = await processMonsters(
+        { kpMonsters, wotcMonsters },
+        {
+            possibleMonsterDescriptors: { ...dMonsters, ...dActions, ...dCharacters, ...dNature, ...dItems },
+            UltimateAssets
         }
-    }
-    const addMonsterSecret = (mob, title, copy) => {
-        const secretCount = (monsterSecrets.get(mob) || 0) + 1;
-        monsterSecrets.set(mob, secretCount);
-        const secretId = mob._id.substr(0, 14) + String(secretCount).padStart(2, "0");
-        if (mob.data) mob.data.details.biography.value += `${DSCRYB_FLAG}<section id="secret-${secretId}" class="secret"><strong>${title}</strong><em>${copy}</em></section>`;
-        if (mob.system) mob.system.details.biography.value += `${DSCRYB_FLAG}<section id="secret-${secretId}" class="secret"><strong>${title}</strong><em>${copy}</em></section>`;
-    };
-    function dscrybMonsterSecondary(mob) {
-        if (skipMonsters.has(mob)) return;
-        const normName = mob.name.toLowerCase();
-        const noAgeName = normName.replace(/(adult|young|ancient|wyrmling)/g, "").trim();
-        Object.keys(possibleMonsterDescriptors)
-            .forEach(key => {
-                if (key.includes(noAgeName) && !usedMonsterDescriptors.has(key)) {
-                    const value = getMonsterDescriptor(key);
-                    addMonsterSecret(mob, possibleMonsterDescriptors[key].name, value);
-                    usedMonsterDescriptors.add(key);
-                }
-            });
-    }
-    function dscrybMonsterTertiary(mob) {
-        if (skipMonsters.has(mob)) return;
-        const normName = mob.name.toLowerCase();
-        const noAgeName = normName.replace(/(adult|young|ancient|wyrmling)/g, "").trim();
-        const isDragon = normName.includes("dragon");
-        const ignoreDragonDescriptors = ["dragonsong", "faerie dragon", "deep dragon", "invisible dragon", "steel dragon", "prismatic dragon", "house dragon", "dragonfly", "bearded dragon", "dragonborn", "elder brain dragon attack", "construct dragon", "dragon dance", "dragon wings"];
-        Object.keys(possibleMonsterDescriptors)
-            .forEach(key => {
-                if (!usedMonsterDescriptors.has(key) && (key.includes(noAgeName) || (isDragon && key.includes("dragon") && !ignoreDragonDescriptors.find(d => key.includes(d))))) {
-                    const value = getMonsterDescriptor(key);
-                    addMonsterSecret(mob, possibleMonsterDescriptors[key].name, value);
-                }
-            });
-    }
-    let total = 0, foundClose = 0, foundSomething = 0, notFound = 0;
-    for (let mob of Object.values(kpMonsters)) {
-        dscrybMonsterPrimary(mob);
-        const normName = mob.name.toLowerCase();
-        const normNameParts = normName.split(/\s+/g);
-        let matches = [];
-        for (let key of Object.keys(UltimateAssets)) {
-            if (key.startsWith("packAsset")) {
-                continue;
-            }
-            let score = 0;
-            let normAssetName = key.toLowerCase();
-            if (normAssetName.includes(normName)) {
-                score = 100;
-            } else {
-                normNameParts.forEach(part => {
-                    if (normAssetName.includes(part)) {
-                        score += (part.length / normAssetName.length) * 100;
-                    }
-                    if (["young", "wyrmling"].includes(part)) {
-                        if (normAssetName.includes("young")) {
-                            score += 12;
-                        } else if (normAssetName.includes("wyrmling")) {
-                            score += 5;
-                        }
-                    }
-                    if (["adult", "ancient"].includes(part) && (normAssetName.includes("adult") || normAssetName.includes("ancient"))) {
-                        if (normAssetName.includes("adult")) {
-                            score += 9;
-                        } else if (normAssetName.includes("ancient")) {
-                            score += 5;
-                        }
-                    }
-                });
-            }
-            if (score) {
-                matches.push([score, key]);
-            }
-        }
-        matches.sort((a, b) => b[0] - a[0]);
-        if (matches[0]) {
-            mob.img = await UltimateAssets.packAssetToken(matches[0][1]);
-            if (mob.token) {
-                mob.token.src = mob.img;
-            }
-            if (mob.prototypeToken) {
-                mob.prototypeToken.texture.src = mob.img;
-            }
-            if (matches[0][0] > 60) {
-                foundClose++;
-            } else {
-                foundSomething++;
-            }
-        } else {
-            notFound++;
-        }
-        total++;
-    }
-    console.log(`Total: ${total}, Close Matches: ${foundClose}, Some Match: ${foundSomething}, No Match: ${notFound}`);
-    for (let mob of Object.values(wotcMonsters)) {
-        dscrybMonsterPrimary(mob);
-        if (!mob.img.includes("/")) {
-            mob.img = `${Constants.TOKENS_ROOT}/${mob.img}`;
-            if (mob.token) {
-                mob.token.src = mob.img;
-            }
-            if (mob.prototypeToken) {
-                mob.prototypeToken.texture.src = mob.img;
-            }
-        }
-        if (!assetExists(mob.img)) {
-            for (let key of Object.keys(UltimateAssets)) {
-                if (key.startsWith("packAsset")) {
-                    continue;
-                }
-                if (mob.img.endsWith(key)) {
-                    mob.img = await UltimateAssets.packAssetToken(key);
-                    if (mob.token) {
-                        mob.token.src = mob.img;
-                    }
-                    if (mob.prototypeToken) {
-                        mob.prototypeToken.texture.src = mob.img;
-                    }
-                    break;
-                }
-            }
-        }
-    }
-    Object.values(kpMonsters)
-        .forEach(mob => {
-            dscrybMonsterSecondary(mob);
-        });
-    Object.values(wotcMonsters)
-        .forEach(mob => {
-            dscrybMonsterSecondary(mob);
-        });
-    Object.values(kpMonsters)
-        .forEach(mob => {
-            dscrybMonsterTertiary(mob);
-        });
-    Object.values(wotcMonsters)
-        .forEach(mob => {
-            dscrybMonsterTertiary(mob);
-        });
-    writeMapAsDb(kpMonsters);
-    writeMapAsDb(wotcMonsters);
+    );
+    writeMapAsDb(processedKpMonsters);
+    writeMapAsDb(processedWotcMonsters);
 
     // Monster Roll Tables
-    const [kpMobTables, wotcMobTables, combinedMobTables] = processRollTables(kpMonsters, wotcMonsters);
+    const [kpMobTables, wotcMobTables, combinedMobTables] = processRollTables(processedKpMonsters, processedWotcMonsters);
     writeMapAsDb(kpMobTables, "kp-monster-tables");
     writeMapAsDb(wotcMobTables, "wotc-monster-tables");
     writeMapAsDb(combinedMobTables, "combined-monster-tables");

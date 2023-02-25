@@ -14,7 +14,8 @@ const Constants = {
     ASSETS_ROOT,
     ICONS_ROOT,
     MAPS_ROOT,
-    TOKENS_ROOT
+    TOKENS_ROOT,
+    DSCRYB_FLAG: "<!---dscryb--->"
 };
 
 const _nameMap = new WeakMap();

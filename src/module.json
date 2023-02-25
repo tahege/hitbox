@@ -222,6 +222,6 @@
   ],
   "compatibility": {
     "minimum": "0.7.0",
-    "verified": "0.8.8"
+    "verified": "10"
   }
 }

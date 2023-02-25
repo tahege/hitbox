@@ -93,7 +93,6 @@ function getUltimateAssetsMap() {
                 } else {
                     fs.readdirSync(assetPath)
                         .forEach(subasset => {
-                            console.log(subasset)
                             assetsMap[subasset] = path.resolve(assetPath, subasset);
                         });
                 }
@@ -126,7 +125,7 @@ function getUltimateAssetsMap() {
             glob: false,
             plugins: [webp()]
         });
-        return files[0].destinationPath.replace(destFolder, `modules/shady-grey-zone/${outputSubdir}`);
+        return files[0].destinationPath.replace(destFolder, `modules/shady-grey-zone/${outputSubdir}`).replace('\\', '/');
     };
     assetsMap.packAsset._types = {
         Token: 'assets/tokens',
@@ -142,7 +141,11 @@ function assetExists(filePath) {
 }
 
 function copyModuleFile() {
-    fs.writeFileSync(path.resolve(__dirname, '../output/module.json'), fs.readFileSync(path.resolve(__dirname, '../src/module.json')));
+    const moduleContents = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../src/module.json')).toString());
+    moduleContents.version = process.env.npm_package_version;
+    moduleContents.manifest = `https://github.com/tahege/hitbox/releases/download/${process.env.npm_package_version}/module.json`;
+    moduleContents.download = `https://github.com/tahege/hitbox/releases/download/${process.env.npm_package_version}/${process.env.npm_package_name}_${process.env.npm_package_version}.zip`;
+    fs.writeFileSync(path.resolve(__dirname, '../output/module.json'), JSON.stringify(moduleContents, null, 2));
 }
 
 module.exports = {

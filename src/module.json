@@ -8,8 +8,8 @@
       "name": "Thomas"
     }
   ],
-  "manifest": "https://raw.githubusercontent.com/tahege/hitbox/main/module.json",
-  "download": "https://github.com/tahege/hitbox/raw/main/shadygreyzone.zip",
+  "manifest": "https://github.com/tahege/hitbox/releases/download/0.1.0/module.json",
+  "download": "https://github.com/tahege/hitbox/releases/download/0.1.0/shady-grey-zone_0.1.0.zip",
   "relationships": {
     "systems": [
       {

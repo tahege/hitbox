@@ -62,9 +62,7 @@ async function run() {
     console.log("Processing feats...");
     for (let feat of Object.values(wotcFeats)) {
         if (!feat.img.startsWith("icons")) {
-            const img = feat.img.split("/").pop();
-            feat.img = `${Constants.ICONS_ROOT}/${img}`;
-            await UltimateAssets.packAssetIcon(img);
+            feat.img = await UltimateAssets.packAssetIcon(feat.img.split("/").pop());
         }
     }
     writeMapAsDb(wotcFeats);
@@ -89,14 +87,12 @@ async function run() {
         if (item.data) item.data.description.value = item.data.description.value.replace("<em>Token artwork by Forgotten Adventures.</em>", "").replace("Content licensed under the @Compendium[koboldpressogl.koboldpressmonsters.KPOGL]{Open Game License}", "").trim();
         if (item.system) item.system.description.value = item.system.description.value.replace("<em>Token artwork by Forgotten Adventures.</em>", "").replace("Content licensed under the @Compendium[koboldpressogl.koboldpressmonsters.KPOGL]{Open Game License}", "").trim();
         if (primary) {
-            // console.log(`adding item primary to ${item.name}`);
             if (item.data) item.data.description.value += `${DSCRYB_FLAG}<blockquote>${primary}</blockquote>`;
             if (item.system) item.system.description.value += `${DSCRYB_FLAG}<blockquote>${primary}</blockquote>`;
             usedItemDescriptors.add(normName);
         }
     }
     const addItemSecret = (item, title, copy) => {
-        // console.log(`adding item secret to ${item.name}`);
         const secretCount = (itemSecrets.get(item) || 0) + 1;
         itemSecrets.set(item, secretCount);
         const secretId = item._id.substr(0, 14) + String(secretCount).padStart(2, "0");
@@ -143,14 +139,12 @@ async function run() {
         if (spell.data) spell.data.description.value = spell.data.description.value.replace("<em>Token artwork by Forgotten Adventures.</em>", "").replace("Content licensed under the @Compendium[koboldpressogl.koboldpressmonsters.KPOGL]{Open Game License}", "").trim();
         if (spell.system) spell.system.description.value = spell.system.description.value.replace("<em>Token artwork by Forgotten Adventures.</em>", "").replace("Content licensed under the @Compendium[koboldpressogl.koboldpressmonsters.KPOGL]{Open Game License}", "").trim();
         if (primary) {
-            // console.log(`adding spell primary to ${spell.name}`);
             if (spell.data) spell.data.description.value += `${DSCRYB_FLAG}<blockquote>${primary}</blockquote>`;
             if (spell.system) spell.system.description.value += `${DSCRYB_FLAG}<blockquote>${primary}</blockquote>`;
             usedSpellDescriptors.add(normName);
         }
     }
     const addSpellSecret = (spell, title, copy) => {
-        // console.log(`adding spell secret to ${spell.name}`);
         const secretCount = (spellSecrets.get(spell) || 0) + 1;
         spellSecrets.set(spell, secretCount);
         const secretId = spell._id.substr(0, 14) + String(secretCount).padStart(2, "0");
@@ -207,14 +201,12 @@ async function run() {
         if (mob.data) mob.data.details.biography.value = mob.data.details.biography.value.replace("<em>Token artwork by Forgotten Adventures.</em>", "").replace("Content licensed under the @Compendium[koboldpressogl.koboldpressmonsters.KPOGL]{Open Game License}", "").trim();
         if (mob.system) mob.system.details.biography.value = mob.system.details.biography.value.replace("<em>Token artwork by Forgotten Adventures.</em>", "").replace("Content licensed under the @Compendium[koboldpressogl.koboldpressmonsters.KPOGL]{Open Game License}", "").trim();
         if (primary) {
-            // console.log(`adding mob primary to ${mob.name}`);
             if (mob.data) mob.data.details.biography.value += `${DSCRYB_FLAG}<blockquote>${primary}</blockquote>`;
             if (mob.system) mob.system.details.biography.value += `${DSCRYB_FLAG}<blockquote>${primary}</blockquote>`;
             usedMonsterDescriptors.add(normName);
         }
     }
     const addMonsterSecret = (mob, title, copy) => {
-        // console.log(`adding mob secret to ${mob.name}`);
         const secretCount = (monsterSecrets.get(mob) || 0) + 1;
         monsterSecrets.set(mob, secretCount);
         const secretId = mob._id.substr(0, 14) + String(secretCount).padStart(2, "0");
